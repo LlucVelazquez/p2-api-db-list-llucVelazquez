@@ -18,6 +18,9 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 @Preview
 fun App(viewModel: DatabaseViewModel=DatabaseViewModel()) {
     MaterialTheme {
+        // API : https://api2.mania.exchange/
+        // Player : https://trackmania.exchange/api/userslegacy/15
+        // https://trackmania.exchange/api/maps/get_map_info/id/65
 
         //Llista amb tots els registres, obtinguda del ViewModel
         val all = viewModel.allTexts.value
