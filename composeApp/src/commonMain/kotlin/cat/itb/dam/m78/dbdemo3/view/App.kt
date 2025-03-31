@@ -14,13 +14,13 @@ import androidx.compose.ui.unit.dp
 import cat.itb.dam.m78.dbdemo3.model.DatabaseViewModel
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
-@Composable
-@Preview
-fun App(viewModel: DatabaseViewModel=DatabaseViewModel()) {
+//@Composable
+
+
+/*fun App(viewModel: DatabaseViewModel=DatabaseViewModel()) {
     MaterialTheme {
         // API : https://bymykel.github.io/CSGO-API/api/es-ES
         // ALL : https://bymykel.github.io/CSGO-API/api/es-ES/all.json
-        // https://trackmania.exchange/api/maps/get_map_info/id/65
 
         //Llista amb tots els registres, obtinguda del ViewModel
         val all = viewModel.allTexts.value
@@ -90,4 +90,4 @@ fun App(viewModel: DatabaseViewModel=DatabaseViewModel()) {
             }
         }
     }
-}
+}*/

@@ -1,23 +1,33 @@
 //Això està al plugin composeMultiplatform
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 //Això està al  plugin kotlinMultiplatform
+import org.jetbrains.compose.ExperimentalComposeLibrary
+import org.jetbrains.kotlin.compose.compiler.gradle.ComposeFeatureFlag
+import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSetTree
 //import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 //import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 //import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 //import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpack
 //import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 
+
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     //alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
-
+    alias(libs.plugins.multiplatform)
+    alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.compose)
+    alias(libs.plugins.compose.hotreload)
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlinx.serialization)
     //SQL Delight
     //id("app.cash.sqldelight") version "2.0.2"
     alias(libs.plugins.sqldelight)
 
 }
+
 
 sqldelight {
     databases {
@@ -34,6 +44,7 @@ kotlin {
 
     //Target JVM
     jvm("desktop")
+
 
     //Target Android
 
@@ -79,6 +90,7 @@ kotlin {
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material)
+            implementation(compose.material3)
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
@@ -88,7 +100,23 @@ kotlin {
             implementation("org.slf4j:slf4j-simple:2.0.17")
             //SQL Delight
             implementation(libs.delight.coroutines.extensions)
-
+            implementation(libs.kermit)
+            implementation(libs.kotlinx.coroutines.core)
+            implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.content.negotiation)
+            implementation(libs.ktor.client.serialization)
+            implementation(libs.ktor.client.logging)
+            implementation(libs.androidx.navigation.composee)
+            implementation(libs.kotlinx.serialization.json)
+            implementation(libs.kotlinx.datetime)
+            implementation("io.ktor:ktor-serialization-kotlinx-json:3.1.0")
+            implementation("io.ktor:ktor-client-core:3.0.2")
+            implementation("io.ktor:ktor-client-cio:3.0.2")
+            implementation("io.ktor:ktor-client-content-negotiation:3.0.2")
+            implementation("com.russhwolf:multiplatform-settings-no-arg:1.3.0")
+            implementation("com.russhwolf:multiplatform-settings-serialization:1.3.0")
+            implementation("io.coil-kt.coil3:coil-compose:3.1.0")
+            implementation("io.coil-kt.coil3:coil-network-ktor3:3.1.0")
         }
 
         val desktopMain by getting //Això és per que té un nom diferent al defalut
