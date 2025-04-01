@@ -14,8 +14,10 @@ import androidx.compose.ui.unit.dp
 import cat.itb.dam.m78.dbdemo3.model.DatabaseViewModel
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
-//@Composable
-
+@Composable
+fun App(){
+    ProjectAPI()
+}
 
 /*fun App(viewModel: DatabaseViewModel=DatabaseViewModel()) {
     MaterialTheme {

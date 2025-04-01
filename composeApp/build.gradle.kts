@@ -16,12 +16,7 @@ plugins {
     //alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
-    alias(libs.plugins.multiplatform)
-    alias(libs.plugins.compose.compiler)
-    alias(libs.plugins.compose)
-    alias(libs.plugins.compose.hotreload)
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlinx.serialization)
+
     //SQL Delight
     //id("app.cash.sqldelight") version "2.0.2"
     alias(libs.plugins.sqldelight)
@@ -100,15 +95,6 @@ kotlin {
             implementation("org.slf4j:slf4j-simple:2.0.17")
             //SQL Delight
             implementation(libs.delight.coroutines.extensions)
-            implementation(libs.kermit)
-            implementation(libs.kotlinx.coroutines.core)
-            implementation(libs.ktor.client.core)
-            implementation(libs.ktor.client.content.negotiation)
-            implementation(libs.ktor.client.serialization)
-            implementation(libs.ktor.client.logging)
-            implementation(libs.androidx.navigation.composee)
-            implementation(libs.kotlinx.serialization.json)
-            implementation(libs.kotlinx.datetime)
             implementation("io.ktor:ktor-serialization-kotlinx-json:3.1.0")
             implementation("io.ktor:ktor-client-core:3.0.2")
             implementation("io.ktor:ktor-client-cio:3.0.2")
@@ -117,6 +103,7 @@ kotlin {
             implementation("com.russhwolf:multiplatform-settings-serialization:1.3.0")
             implementation("io.coil-kt.coil3:coil-compose:3.1.0")
             implementation("io.coil-kt.coil3:coil-network-ktor3:3.1.0")
+            implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
         }
 
         val desktopMain by getting //Això és per que té un nom diferent al defalut
