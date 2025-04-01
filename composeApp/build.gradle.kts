@@ -103,7 +103,7 @@ kotlin {
             implementation("com.russhwolf:multiplatform-settings-serialization:1.3.0")
             implementation("io.coil-kt.coil3:coil-compose:3.1.0")
             implementation("io.coil-kt.coil3:coil-network-ktor3:3.1.0")
-            implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
+            implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.1")
         }
 
         val desktopMain by getting //Això és per que té un nom diferent al defalut
