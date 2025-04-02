@@ -6,9 +6,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Button
 import androidx.compose.material.Text
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import io.ktor.client.*
@@ -21,14 +18,12 @@ import kotlinx.coroutines.launch
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.Serializable
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
-import coil3.compose.AsyncImage
-import com.russhwolf.settings.Settings
 import androidx.compose.material3.Button
-import androidx. compose. runtime. MutableState
+import androidx.compose.runtime.*
+import androidx.compose.ui.platform.findComposeDefaultViewModelStoreOwner
 
 @Serializable
 data class CounterStrike(
@@ -36,7 +31,7 @@ data class CounterStrike(
     val name: String,
     val description: String,
     val rarity: Rarity,
-    val collection: Collection,
+    val collections: Collection,
     val team: Team,
     val market_hash_name: String,
     val image: String
@@ -47,12 +42,12 @@ data class Rarity(
 )
 @Serializable
 data class Collection(
-    val zero: Zero
+    val collections: List<ArrayObj>
 )
 @Serializable
 @SerialName("0")
-data class Zero(
-        val name: String
+data class ArrayObj(
+    val name: String
 )
 @Serializable
 data class Team(
@@ -80,12 +75,11 @@ object CounterStrikeApi {
     }
     suspend fun listSkins() = client.get(url).body<List<CounterStrike>>()
 }
+@OptIn(InternalComposeApi::class)
 @Composable
 fun ProjectAPI() {
-    val viewModel = viewModel{CSItemsViewModel()}
-    val skins = viewModel.skins
-    val settings: Settings = Settings()
-    var preferit: String? = settings.getStringOrNull("key")
+    val viewModel = findComposeDefaultViewModelStoreOwner()?.let { viewModel(viewModelStoreOwner = it){CSItemsViewModel()} }
+    val skins = viewModel?.skins
     Column(modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center){
