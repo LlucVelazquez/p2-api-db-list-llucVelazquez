@@ -90,12 +90,13 @@ kotlin {
             //implementation(compose.ui)
             //implementation(compose.components.resources)
             //implementation(compose.components.uiToolingPreview)
-            implementation(libs.androidx.lifecycle.viewmodel)
+            //implementation(libs.androidx.lifecycle.viewmodel)
             //implementation(libs.androidx.lifecycle.runtime.compose)
             //implementation("org.slf4j:slf4j-api:2.0.17")
             //implementation("org.slf4j:slf4j-simple:2.0.17")
             //SQL Delight
             //implementation(libs.delight.coroutines.extensions)
+            implementation("androidx.navigation:navigation-compose:2.8.4")
             implementation("io.ktor:ktor-serialization-kotlinx-json:3.1.0")
             implementation("io.ktor:ktor-client-core:3.1.0")
             implementation("io.ktor:ktor-client-cio:3.1.0")
@@ -105,8 +106,8 @@ kotlin {
             //implementation("com.russhwolf:multiplatform-settings-serialization:1.3.0")
             //implementation("io.coil-kt.coil3:coil-compose:3.1.0")
             //implementation("io.coil-kt.coil3:coil-network-ktor3:3.1.0")
-            implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.1")
-
+            //implementation(libs.androidx.navigation.compose.jvmstubs)
+            implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.2")
         }
 
         val desktopMain by getting //Això és per que té un nom diferent al defalut
@@ -130,7 +131,6 @@ kotlin {
 //        }
     }
 }
-
 //Configuraciones específicas para escritorio
 compose.desktop {
     application {

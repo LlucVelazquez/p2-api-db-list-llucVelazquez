@@ -1,10 +1,38 @@
 package cat.itb.dam.m78.dbdemo3.view
 import androidx.compose.runtime.*
+import kotlinx.serialization.Serializable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.toRoute
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 
 
 @Composable
 fun App(){
-    ProjectAPI()
+    ListScreen(detailScreen = {})
+    //NavApiScreenCS()
+}
+
+object Destination {
+    @Serializable
+    data object ListScreen
+    @Serializable
+    data class DetailScreen(val details: List<String>)
+}
+@Composable
+fun NavApiScreenCS(){
+    val navController = rememberNavController()
+    NavHost(navController = navController, startDestination = Destination.ListScreen) {
+        composable<Destination.ListScreen> {
+            ListScreen { navController.navigate(Destination.DetailScreen(it))}
+        }
+        composable<Destination.DetailScreen> { backStack ->
+            val details = backStack.toRoute<Destination.DetailScreen>().details
+            DetailScreen(
+                details,
+                navListScreen = {navController.navigate(Destination.ListScreen)})
+        }
+    }
 }
 
 /*fun App(viewModel: DatabaseViewModel=DatabaseViewModel()) {
