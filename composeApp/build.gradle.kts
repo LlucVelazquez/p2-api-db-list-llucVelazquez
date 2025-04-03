@@ -20,6 +20,7 @@ plugins {
     //SQL Delight
     //id("app.cash.sqldelight") version "2.0.2"
     alias(libs.plugins.sqldelight)
+    kotlin("plugin.serialization") version "1.8.20"
 
 }
 
@@ -82,28 +83,30 @@ kotlin {
     sourceSets {
 
         commonMain.dependencies {
-            implementation(compose.runtime)
-            implementation(compose.foundation)
-            implementation(compose.material)
+            //implementation(compose.runtime)
+            //implementation(compose.foundation)
+            //implementation(compose.material)
             implementation(compose.material3)
-            implementation(compose.ui)
-            implementation(compose.components.resources)
-            implementation(compose.components.uiToolingPreview)
+            //implementation(compose.ui)
+            //implementation(compose.components.resources)
+            //implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodel)
-            implementation(libs.androidx.lifecycle.runtime.compose)
+            //implementation(libs.androidx.lifecycle.runtime.compose)
             //implementation("org.slf4j:slf4j-api:2.0.17")
-            implementation("org.slf4j:slf4j-simple:2.0.17")
+            //implementation("org.slf4j:slf4j-simple:2.0.17")
             //SQL Delight
-            implementation(libs.delight.coroutines.extensions)
+            //implementation(libs.delight.coroutines.extensions)
             implementation("io.ktor:ktor-serialization-kotlinx-json:3.1.0")
-            implementation("io.ktor:ktor-client-core:3.0.2")
-            implementation("io.ktor:ktor-client-cio:3.0.2")
-            implementation("io.ktor:ktor-client-content-negotiation:3.0.2")
-            implementation("com.russhwolf:multiplatform-settings-no-arg:1.3.0")
-            implementation("com.russhwolf:multiplatform-settings-serialization:1.3.0")
-            implementation("io.coil-kt.coil3:coil-compose:3.1.0")
-            implementation("io.coil-kt.coil3:coil-network-ktor3:3.1.0")
+            implementation("io.ktor:ktor-client-core:3.1.0")
+            implementation("io.ktor:ktor-client-cio:3.1.0")
+            implementation("io.ktor:ktor-client-content-negotiation:3.1.0")
+            implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
+            //implementation("com.russhwolf:multiplatform-settings-no-arg:1.3.0")
+            //implementation("com.russhwolf:multiplatform-settings-serialization:1.3.0")
+            //implementation("io.coil-kt.coil3:coil-compose:3.1.0")
+            //implementation("io.coil-kt.coil3:coil-network-ktor3:3.1.0")
             implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.1")
+
         }
 
         val desktopMain by getting //Això és per que té un nom diferent al defalut

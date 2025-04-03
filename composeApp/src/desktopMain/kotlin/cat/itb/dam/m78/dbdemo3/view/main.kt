@@ -11,6 +11,7 @@ fun main() = application {
         title = "dbdemo3",
         state = WindowState(width = 422.dp, height = 800.dp)
     ) {
-        App()
+        //App()
+        ProjectAPI()
     }
 }
