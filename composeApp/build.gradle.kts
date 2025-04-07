@@ -34,13 +34,18 @@ sqldelight {
         }
     }
 }
+repositories {
+    google()
+    mavenCentral()
+    maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
+}
 
 //Bloque de configuración para Kotlin Multiplatform
 kotlin {
 
     //Target JVM
     jvm("desktop")
-
+    jvmToolchain(11)
 
     //Target Android
 
@@ -81,33 +86,24 @@ kotlin {
 
     //Bloque de configuración de dependències
     sourceSets {
-
         commonMain.dependencies {
-            //implementation(compose.runtime)
-            //implementation(compose.foundation)
-            //implementation(compose.material)
-            implementation(compose.material3)
-            //implementation(compose.ui)
-            //implementation(compose.components.resources)
-            //implementation(compose.components.uiToolingPreview)
-            //implementation(libs.androidx.lifecycle.viewmodel)
-            //implementation(libs.androidx.lifecycle.runtime.compose)
-            //implementation("org.slf4j:slf4j-api:2.0.17")
-            //implementation("org.slf4j:slf4j-simple:2.0.17")
-            //SQL Delight
-            //implementation(libs.delight.coroutines.extensions)
-            implementation("androidx.navigation:navigation-compose:2.8.4")
             implementation("io.ktor:ktor-serialization-kotlinx-json:3.1.0")
-            implementation("io.ktor:ktor-client-core:3.1.0")
-            implementation("io.ktor:ktor-client-cio:3.1.0")
-            implementation("io.ktor:ktor-client-content-negotiation:3.1.0")
+            //implementation("io.ktor:ktor-client-core:3.1.0")
+            //implementation("io.ktor:ktor-client-cio:3.1.0")
             implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
-            //implementation("com.russhwolf:multiplatform-settings-no-arg:1.3.0")
-            //implementation("com.russhwolf:multiplatform-settings-serialization:1.3.0")
-            //implementation("io.coil-kt.coil3:coil-compose:3.1.0")
-            //implementation("io.coil-kt.coil3:coil-network-ktor3:3.1.0")
-            //implementation(libs.androidx.navigation.compose.jvmstubs)
-            implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.2")
+            implementation("io.ktor:ktor-client-content-negotiation:3.1.0")
+            implementation("io.coil-kt.coil3:coil-compose:3.1.0")
+            implementation("io.coil-kt.coil3:coil-network-ktor3:3.1.0")
+            implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.1")
+            implementation("org.jetbrains.compose.ui:ui-util:1.7.0")
+            //implementation("org.jetbrains.compose.desktop:desktop:1.7.0")
+            //implementation("androidx.compose.compiler:compiler:1.5.15")
+            //implementation("com.arkivanov.decompose:decompose:2.0.0")
+            //implementation("com.arkivanov.decompose:extensions-compose-jetbrains:2.0.0")
+            implementation(compose.material3)
+            implementation(libs.androidx.lifecycle.viewmodel)
+            implementation(libs.androidx.lifecycle.runtime.compose)
+            //implementation(compose.desktop.currentOs)
         }
 
         val desktopMain by getting //Això és per que té un nom diferent al defalut

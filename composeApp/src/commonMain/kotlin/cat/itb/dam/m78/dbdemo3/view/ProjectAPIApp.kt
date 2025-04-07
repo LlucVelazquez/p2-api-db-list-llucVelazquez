@@ -10,6 +10,7 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.Serializable
 import androidx.compose.runtime.*
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 
 @Serializable
 data class CounterStrike(
@@ -42,7 +43,6 @@ class CSItemsViewModel : ViewModel() {
             skins = CounterStrikeApi.listSkins()
         }
     }
-    fun printSkins(){viewModelScope.launch(Dispatchers.Default) { skins = CounterStrikeApi.listSkins() }}
 }
 
 object CounterStrikeApi {

@@ -2,7 +2,6 @@ package cat.itb.dam.m78.dbdemo3.view
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.text.input.TextFieldState
 import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.material.*
 import androidx.compose.material.ButtonDefaults
@@ -10,23 +9,19 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material3.*
-import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.findComposeDefaultViewModelStoreOwner
-import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.semantics.traversalIndex
+import androidx.compose.ui.semantics.*
 
 @OptIn(InternalComposeApi::class, ExperimentalMaterial3Api::class)
 @Composable
-fun ListScreen(detailScreen: (List<String>)-> Unit) {
+fun ListScreen(navDetailsScreen: (CounterStrike) -> Unit) {
     val viewModel = findComposeDefaultViewModelStoreOwner()?.let { viewModel(viewModelStoreOwner = it){CSItemsViewModel()} }
     val skins = viewModel?.skins
     var selectedItem by remember { mutableStateOf(0) }
@@ -75,29 +70,18 @@ fun ListScreen(detailScreen: (List<String>)-> Unit) {
                 shape = RectangleShape
             ){}
             LazyColumn(modifier = Modifier) {
-                filteredSkins.forEach{ item ->
+                filteredSkins.forEach{ skin ->
                     item {
                         Row {
                             Button(
                                 onClick = {
-                                    detailScreen(
-                                        listOf(
-                                            item.id,
-                                            item.name,
-                                            item.description,
-                                            item.rarity.name,
-                                            item.collections[1],
-                                            item.team.name,
-                                            item.market_hash_name,
-                                            item.image
-                                        )
-                                    )
+                                    navDetailsScreen(skin)
                                 },
                                 shape = RectangleShape,
                                 colors = ButtonDefaults.buttonColors(contentColor = Color.White,
                                     backgroundColor = Color.Black)
                             ) {
-                                Text(item.name)
+                                Text(skin.name)
                             }
                         }
                     }
@@ -105,8 +89,4 @@ fun ListScreen(detailScreen: (List<String>)-> Unit) {
             }
         }
     }
-}
-
-fun detailScreen(listOf: List<Any>) {
-
 }
