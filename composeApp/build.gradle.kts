@@ -19,13 +19,13 @@ plugins {
 
     //SQL Delight
     //id("app.cash.sqldelight") version "2.0.2"
-    alias(libs.plugins.sqldelight)
+    //alias(libs.plugins.sqldelight)
     kotlin("plugin.serialization") version "1.8.20"
 
 }
 
 
-sqldelight {
+/*sqldelight {
     databases {
         create("Database") {
             packageName.set("cat.itb.dam.m78.dbdemo3.db")
@@ -33,12 +33,7 @@ sqldelight {
             //verifyMigrations.set(true)
         }
     }
-}
-repositories {
-    google()
-    mavenCentral()
-    maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
-}
+}*/
 
 //Bloque de configuración para Kotlin Multiplatform
 kotlin {

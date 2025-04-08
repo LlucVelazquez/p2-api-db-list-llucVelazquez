@@ -1,5 +1,5 @@
 package cat.itb.dam.m78.dbdemo3.model
-
+/*
 import app.cash.sqldelight.db.SqlDriver
 import app.cash.sqldelight.driver.jdbc.sqlite.JdbcSqliteDriver
 import cat.itb.dam.m78.dbdemo3.db.Database
@@ -22,4 +22,4 @@ actual fun createDriver(): SqlDriver {
     //Database.Schema.create(driver)
     return driver
 }
-
+*/

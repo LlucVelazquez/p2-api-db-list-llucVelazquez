@@ -1,5 +1,5 @@
 package cat.itb.dam.m78.dbdemo3.model
-
+/*
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -36,4 +36,4 @@ class DatabaseViewModel : ViewModel() {
             _fetchAllTexts()
         }
     }
-}
+}*/

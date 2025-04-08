@@ -1,5 +1,6 @@
 package cat.itb.dam.m78.dbdemo3.view
 
+import androidx.compose.material3.Text
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.WindowState
@@ -11,6 +12,7 @@ fun main() = application {
         title = "dbdemo3",
         state = WindowState(width = 422.dp, height = 800.dp)
     ) {
-        App()
+        //App()
+        Text("hola")
     }
 }
