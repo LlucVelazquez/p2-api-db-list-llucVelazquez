@@ -1,6 +1,7 @@
 package cat.itb.dam.m78.dbdemo3.view
 
-/*
+
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.dp
@@ -11,14 +12,14 @@ import androidx.compose.material3.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import coil3.compose.AsyncImage
 
+
 @Composable
 fun DetailScreen(navListScreen: () -> Unit, skin: CounterStrike) {
-    //val viewModel = DatabaseViewModel()
-    //val skins = viewModel.
     Scaffold(
         bottomBar = {
             Button(
@@ -52,14 +53,14 @@ fun DetailScreen(navListScreen: () -> Unit, skin: CounterStrike) {
             {
                 Text("Name: ${skin.name}", fontWeight = FontWeight.Bold)
                 Spacer(Modifier.padding(8.dp))
-                Text("Rarity: ${skin.rarity}")
+                Text("Rarity: ${skin.rarity.name}")
                 Spacer(Modifier.padding(5.dp))
-                Text("Coleccio: ${skin.collections[0]}")
+                Text("Coleccio: ${skin.collections[0].name}")
                 Spacer(Modifier.padding(5.dp))
-                Text("Team ${skin.team}")
+                Text("Team ${skin.team.name}")
                 Spacer(Modifier.padding(5.dp))
                 Text("Descripcio: ${skin.description}")
             }
         }
     }
-}*/
+}

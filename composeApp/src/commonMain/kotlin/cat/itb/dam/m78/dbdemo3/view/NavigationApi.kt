@@ -1,5 +1,5 @@
 package cat.itb.dam.m78.dbdemo3.view
-/*
+
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
@@ -30,7 +30,7 @@ fun navigation() {
         val currentScreen = viewModel.currentScreen.value
         Scaffold(
             Modifier.fillMaxSize(),
-            bottomBar = { if (currentScreen !is Screen.ListScreen) { /*bottomNavBar(viewModel)*/}}
+            bottomBar = { if (currentScreen !is Screen.ListScreen) { bottomNavBar(viewModel)}}
         ) {
             when (currentScreen) {
                 Screen.ListScreen -> ListScreen(
@@ -44,4 +44,4 @@ fun navigation() {
             }
         }
     }
-}*/
+}

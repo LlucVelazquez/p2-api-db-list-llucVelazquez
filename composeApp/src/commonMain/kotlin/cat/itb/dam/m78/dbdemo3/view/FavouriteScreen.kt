@@ -1,5 +1,5 @@
 package cat.itb.dam.m78.dbdemo3.view
-/*
+
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -19,4 +19,4 @@ fun FavouriteScreen(){
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
     }
-}*/
+}

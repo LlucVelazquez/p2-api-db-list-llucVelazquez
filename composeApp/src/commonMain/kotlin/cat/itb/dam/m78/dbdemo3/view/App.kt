@@ -4,7 +4,7 @@ import androidx.compose.runtime.*
 
 @Composable
 fun App(){
-    //navigation()
+    navigation()
     //ListScreen(navDetailsScreen = {})
 }
 

@@ -4,9 +4,10 @@ package cat.itb.dam.m78.dbdemo3.view
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.text.input.rememberTextFieldState
-import androidx.compose.material.*
-import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.Text
+import androidx.compose.material.BottomNavigation
+import androidx.compose.material.BottomNavigationDefaults
+import androidx.compose.material.BottomNavigationItem
+import androidx.compose.material3.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material3.*
@@ -14,11 +15,11 @@ import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.findComposeDefaultViewModelStoreOwner
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.semantics.*
+import androidx.compose.ui.unit.dp
 
 @OptIn(InternalComposeApi::class, ExperimentalMaterial3Api::class)
 @Composable
@@ -75,12 +76,9 @@ fun ListScreen(navDetailsScreen: (CounterStrike) -> Unit) {
                     item {
                         Row {
                             Button(
-                                onClick = {
-                                    navDetailsScreen(skin)
-                                },
+                                modifier = Modifier.width(400.dp),
                                 shape = RectangleShape,
-                                colors = ButtonDefaults.buttonColors(contentColor = Color.White,
-                                    backgroundColor = Color.Black)
+                                onClick = { navDetailsScreen(skin) }
                             ) {
                                 Text(skin.name)
                             }
