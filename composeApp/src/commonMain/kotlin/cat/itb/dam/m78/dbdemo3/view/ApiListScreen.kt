@@ -20,6 +20,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.semantics.*
 import androidx.compose.ui.unit.dp
+import com.russhwolf.settings.Settings
 
 @OptIn(InternalComposeApi::class, ExperimentalMaterial3Api::class)
 @Composable
@@ -28,6 +29,8 @@ fun ListScreen(navDetailsScreen: (CounterStrike) -> Unit) {
     val skins = viewModel?.skins
     var selectedItem by remember { mutableStateOf(0) }
     val items = listOf("All", "Favourites")
+    val setting : Settings = Settings()
+    val preferit: String? = setting.getStringOrNull("key")
     Column(modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Bottom) {
         BottomNavigation(windowInsets = BottomNavigationDefaults.windowInsets) {
@@ -71,6 +74,7 @@ fun ListScreen(navDetailsScreen: (CounterStrike) -> Unit) {
                 },
                 shape = RectangleShape
             ){}
+            Text("Ultima skin vista: $preferit")
             LazyColumn(modifier = Modifier) {
                 filteredSkins.forEach{ skin ->
                     item {
@@ -78,7 +82,9 @@ fun ListScreen(navDetailsScreen: (CounterStrike) -> Unit) {
                             Button(
                                 modifier = Modifier.width(400.dp),
                                 shape = RectangleShape,
-                                onClick = { navDetailsScreen(skin) }
+                                onClick = {
+                                    setting.putString("key", skin.name)
+                                    navDetailsScreen(skin) }
                             ) {
                                 Text(skin.name)
                             }
