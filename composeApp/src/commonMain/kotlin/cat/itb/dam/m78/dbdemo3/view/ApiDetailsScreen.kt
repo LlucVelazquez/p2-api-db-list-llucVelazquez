@@ -1,25 +1,25 @@
 package cat.itb.dam.m78.dbdemo3.view
-
-
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.material3.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Star
+import androidx.compose.runtime.InternalComposeApi
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import cat.itb.dam.m78.dbdemo3.model.DatabaseViewModel
 import coil3.compose.AsyncImage
 
 
+@OptIn(InternalComposeApi::class)
 @Composable
 fun DetailScreen(navListScreen: () -> Unit, skin: CounterStrike) {
+    val dbViewModel = DatabaseViewModel()
     Scaffold(
         bottomBar = {
             Button(
@@ -30,13 +30,15 @@ fun DetailScreen(navListScreen: () -> Unit, skin: CounterStrike) {
                 Text("Back")
             }
         },
-        /*floatingActionButtonPosition = {
+        floatingActionButton = {
             FloatingActionButton(
-                onClick = { },
+                onClick = {
+                    dbViewModel.insertSkin(skin)
+                }
             ){
-                Icon(Icons.Default.Star, contentDescription = "Preferit")
+                Icon(Icons.Filled.Add,"Add Skin")
             }
-        }*/
+        }
     ) {
         Column(
             modifier = Modifier.fillMaxSize(),
@@ -47,12 +49,10 @@ fun DetailScreen(navListScreen: () -> Unit, skin: CounterStrike) {
             AsyncImage(
                 model = skin.image,
                 contentDescription = null,
-                modifier = Modifier.fillMaxWidth().padding(5.dp)
+                modifier = Modifier.fillMaxWidth().padding(5.dp).height(250.dp)
             )
-            Column(Modifier.padding(25.dp))
+            Column(Modifier.padding(15.dp))
             {
-                Text("Name: ${skin.name}", fontWeight = FontWeight.Bold)
-                Spacer(Modifier.padding(8.dp))
                 Text("Rarity: ${skin.rarity.name}")
                 Spacer(Modifier.padding(5.dp))
                 Text("Coleccio: ${skin.collections[0].name}")

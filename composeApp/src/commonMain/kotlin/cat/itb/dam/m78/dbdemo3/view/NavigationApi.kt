@@ -30,7 +30,7 @@ fun navigation() {
         val currentScreen = viewModel.currentScreen.value
         Scaffold(
             Modifier.fillMaxSize(),
-            bottomBar = { if (currentScreen !is Screen.ListScreen) { bottomNavBar(viewModel)}}
+            bottomBar = { if (currentScreen !is Screen.DetailScreen) { bottomNavBar(viewModel)}}
         ) {
             when (currentScreen) {
                 Screen.ListScreen -> ListScreen(

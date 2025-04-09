@@ -1,39 +1,41 @@
 package cat.itb.dam.m78.dbdemo3.model
-/*
+
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import cat.itb.dam.m78.dbdemo3.db.MyTable
+import cat.itb.dam.m78.dbdemo3.view.CounterStrike
 
 import kotlinx.coroutines.launch
 
 class DatabaseViewModel : ViewModel() {
-    val allTexts = mutableStateOf<List<MyTable>>(emptyList())
+    val allSkins = mutableStateOf<List<MyTable>>(emptyList())
 
     init {
-        _fetchAllTexts()
+        _fetchAllSkins()
     }
 
-    private fun _fetchAllTexts() {
+    private fun _fetchAllSkins() {
         viewModelScope.launch {
             val myTableQueries = database.myTableQueries
-            allTexts.value = myTableQueries.selectAll().executeAsList()
+            allSkins.value = myTableQueries.selectAll().executeAsList()
+        }
+    }
+    fun updateAllSkins() { _fetchAllSkins()}
+
+    fun insertSkin(skin: CounterStrike) {
+        viewModelScope.launch {
+            val myTableQueries = database.myTableQueries
+            myTableQueries.insert(skin.name)
+            _fetchAllSkins()
         }
     }
 
-    fun insertText(text: String) {
+    fun deleteSkin(id: Long) {
         viewModelScope.launch {
             val myTableQueries = database.myTableQueries
-            myTableQueries.insert(text)
-            _fetchAllTexts()
+            myTableQueries.delete(id)
+            _fetchAllSkins()
         }
     }
-
-    fun deleteText(id: Long) {
-        viewModelScope.launch {
-            val myTableQueries = database.myTableQueries
-            myTableQueries.delete( id)
-            _fetchAllTexts()
-        }
-    }
-}*/
+}
