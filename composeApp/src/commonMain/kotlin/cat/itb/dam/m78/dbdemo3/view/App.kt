@@ -4,7 +4,8 @@ import androidx.compose.runtime.*
 
 @Composable
 fun App(){
-    ProjectAPI()
+    //navigation()
+    //ListScreen(navDetailsScreen = {})
 }
 
 /*fun App(viewModel: DatabaseViewModel=DatabaseViewModel()) {
