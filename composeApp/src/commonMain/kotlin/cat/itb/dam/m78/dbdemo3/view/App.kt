@@ -7,7 +7,7 @@ fun App(){
     navigation()
     //ListScreen(navDetailsScreen = {})
 }
-
+//a
 /*fun App(viewModel: DatabaseViewModel=DatabaseViewModel()) {
     MaterialTheme {
         // API : https://bymykel.github.io/CSGO-API/api/es-ES
