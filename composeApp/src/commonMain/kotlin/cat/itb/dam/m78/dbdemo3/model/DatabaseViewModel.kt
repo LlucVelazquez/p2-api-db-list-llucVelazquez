@@ -4,38 +4,38 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import cat.itb.dam.m78.dbdemo3.db.MyTable
-import cat.itb.dam.m78.dbdemo3.view.CounterStrike
+import cat.itb.dam.m78.dbdemo3.view.Estudiants
 
 import kotlinx.coroutines.launch
 
 class DatabaseViewModel : ViewModel() {
-    val allSkins = mutableStateOf<List<MyTable>>(emptyList())
+    val allEstudiants = mutableStateOf<List<MyTable>>(emptyList())
 
     init {
-        _fetchAllSkins()
+        _fetchAllEstudiants()
     }
 
-    private fun _fetchAllSkins() {
+    private fun _fetchAllEstudiants() {
         viewModelScope.launch {
             val myTableQueries = database.myTableQueries
-            allSkins.value = myTableQueries.selectAll().executeAsList()
+            allEstudiants.value = myTableQueries.selectAll().executeAsList()
         }
     }
-    fun updateAllSkins() { _fetchAllSkins()}
+    fun updateAllEstudiants() { _fetchAllEstudiants()}
 
-    fun insertSkin(skin: CounterStrike) {
+    fun insertEstudiant(estudiant: Estudiants, data: String) {
         viewModelScope.launch {
             val myTableQueries = database.myTableQueries
-            myTableQueries.insert(skin.name)
-            _fetchAllSkins()
+            myTableQueries.insert(estudiant.id.toLong(),data)
+            _fetchAllEstudiants()
         }
     }
 
-    fun deleteSkin(id: Long) {
+    fun deleteEstudiants(id: Long) {
         viewModelScope.launch {
             val myTableQueries = database.myTableQueries
             myTableQueries.delete(id)
-            _fetchAllSkins()
+            _fetchAllEstudiants()
         }
     }
 }

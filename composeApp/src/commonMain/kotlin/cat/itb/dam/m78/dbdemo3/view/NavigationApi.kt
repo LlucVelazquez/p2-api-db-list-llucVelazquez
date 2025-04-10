@@ -13,8 +13,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 
 sealed interface Screen {
     data object ListScreen : Screen
-    data object FavouritesScreen : Screen
-    data class DetailScreen(val skin: CounterStrike) : Screen
+    data object FaltesScreen : Screen
 }
 
 class NavigationViewModel : ViewModel() {
@@ -30,17 +29,11 @@ fun navigation() {
         val currentScreen = viewModel.currentScreen.value
         Scaffold(
             Modifier.fillMaxSize(),
-            bottomBar = { if (currentScreen !is Screen.DetailScreen) { bottomNavBar(viewModel)}}
+            bottomBar = { bottomNavBar(viewModel)}
         ) {
             when (currentScreen) {
-                Screen.ListScreen -> ListScreen(
-                    navDetailsScreen = { viewModel.navTo(Screen.DetailScreen(it)) }
-                )
-                is Screen.FavouritesScreen -> FavouriteScreen()
-                is Screen.DetailScreen -> DetailScreen(
-                    navListScreen = { viewModel.navTo(Screen.ListScreen)},
-                    skin = currentScreen.skin
-                )
+                Screen.ListScreen -> ListScreen()
+                is Screen.FaltesScreen -> FaltesScreen()
             }
         }
     }

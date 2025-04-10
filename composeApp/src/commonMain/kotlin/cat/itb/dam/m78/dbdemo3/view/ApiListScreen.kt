@@ -14,81 +14,57 @@ import androidx.compose.material3.*
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.findComposeDefaultViewModelStoreOwner
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.semantics.*
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.russhwolf.settings.Settings
+import cat.itb.dam.m78.dbdemo3.model.DatabaseViewModel
+import coil3.compose.AsyncImage
+import java.time.LocalDateTime
 
 @OptIn(InternalComposeApi::class, ExperimentalMaterial3Api::class)
 @Composable
-fun ListScreen(navDetailsScreen: (CounterStrike) -> Unit) {
-    val viewModel = findComposeDefaultViewModelStoreOwner()?.let { viewModel(viewModelStoreOwner = it){CSItemsViewModel()} }
-    val skins = viewModel?.skins
-    var selectedItem by remember { mutableStateOf(0) }
-    val items = listOf("All", "Favourites")
-    val setting : Settings = Settings()
-    val preferit: String? = setting.getStringOrNull("key")
-    Column(modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Bottom) {
-        BottomNavigation(windowInsets = BottomNavigationDefaults.windowInsets) {
-            items.forEachIndexed { index, item ->
-                BottomNavigationItem(
-                    icon = { Icon(Icons.Filled.Favorite, contentDescription = null) },
-                    label = { Text(item) },
-                    selected = selectedItem == index,
-                    onClick = { selectedItem = index }
-                )
-            }
-        }
-    }
-    if (skins != null) {
-        var filteredSkins by remember { mutableStateOf(skins) }
+fun ListScreen() {
+    val viewModel = findComposeDefaultViewModelStoreOwner()?.let { viewModel(viewModelStoreOwner = it){EstudiantsViewModel()} }
+    val estudiants = viewModel?.estudiants
+    val dbViewModel = DatabaseViewModel()
+    var data: String
+    if (estudiants != null) {
         var expanded by remember { mutableStateOf(false) }
         val textFieldState = rememberTextFieldState()
-        Column {
-            SearchBar(
-                modifier = Modifier.semantics { traversalIndex = 0f },
-                inputField = {
-                    SearchBarDefaults.InputField(
-                        query = textFieldState.text.toString(),
-                        onQueryChange = {textFieldState.edit { replace(0,length,it) }},
-                        onSearch = {
-                                query-> filteredSkins = skins.filter { it.name.contains(query, ignoreCase = true) }
-                            expanded = false
-                        },
-                        expanded = expanded,
-                        onExpandedChange = {
-                            expanded = it
-                        },
-                        placeholder = {
-                            Text(text = "Search")
-                        }
-                    )
-                },
-                expanded = expanded,
-                onExpandedChange = {
-                    expanded = it
-                },
-                shape = RectangleShape
-            ){}
-            Text("Ultima skin vista: $preferit")
+        Column(Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally) {
+            Text("Llista d'estudiants", fontSize = 30.sp)
             LazyColumn(modifier = Modifier) {
-                filteredSkins.forEach{ skin ->
+                estudiants?.forEach{ estudiant ->
                     item {
                         Row {
                             Button(
                                 modifier = Modifier.width(400.dp),
                                 shape = RectangleShape,
                                 onClick = {
-                                    setting.putString("key", skin.name)
-                                    navDetailsScreen(skin) }
+                                    data = LocalDateTime.now().toString()
+                                    dbViewModel.insertEstudiant(estudiant,data)}
                             ) {
-                                Text(skin.name)
+                                Column {
+                                    Text("${estudiant.name} ${estudiant.surnames}")
+                                    Spacer(Modifier.height(10.dp))
+                                    Text(estudiant.email)
+                                    Spacer(Modifier.height(10.dp))
+                                    AsyncImage(
+                                        model = estudiant.photo_link,
+                                        contentDescription = null,
+                                        modifier = Modifier.fillMaxWidth().padding(5.dp).height(50.dp)
+                                    )
+                                }
                             }
                         }
+                        Spacer(Modifier.height(20.dp))
                     }
                 }
             }

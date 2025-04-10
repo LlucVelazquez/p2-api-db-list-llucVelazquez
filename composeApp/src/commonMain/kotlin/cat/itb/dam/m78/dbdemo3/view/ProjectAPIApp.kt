@@ -13,40 +13,33 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 
 @Serializable
-data class CounterStrike(
-    val id: String,
+data class Estudiants(
+    val id: Int,
     val name: String,
-    val description: String,
-    val rarity: Rarity,
-    val collections: List<Collections>,
-    val team: Team,
-    val market_hash_name: String,
-    val image: String
-)
-@Serializable
-data class Rarity(
-    val name: String
-)
-@Serializable
-data class Collections(
-    val name: String
-)
-@Serializable
-data class Team(
-    val name: String
+    val surnames: String,
+    val email: String,
+    val photo_link: String
 )
 
-class CSItemsViewModel : ViewModel() {
-    var skins by mutableStateOf<List<CounterStrike>?>(null)
+class EstudiantsViewModel : ViewModel() {
+    var estudiants by mutableStateOf<List<Estudiants>?>(null)
     init {
         viewModelScope.launch(Dispatchers.Default) {
-            skins = CounterStrikeApi.listSkins()
+            estudiants = EstudiantsApi.listEstudiants()
+        }
+    }
+}
+class GetNom(id: Int) : ViewModel(){
+    var estudiant by mutableStateOf<List<Estudiants>?>(null)
+    init {
+        viewModelScope.launch(Dispatchers.Default) {
+            estudiant = EstudiantsApi.detail(id)
         }
     }
 }
 
-object CounterStrikeApi {
-    val url = "https://bymykel.github.io/CSGO-API/api/es-ES/agents.json"
+object EstudiantsApi {
+    val url = "https://fp.mateuyabar.com/DAM-M78/composeP2/exam/students.json"
     val client = HttpClient(){
         install(ContentNegotiation){
             json(Json{
@@ -54,5 +47,8 @@ object CounterStrikeApi {
             })
         }
     }
-    suspend fun listSkins() = client.get(url).body<List<CounterStrike>>()
+    suspend fun listEstudiants() = client.get(url).body<List<Estudiants>>()
+
+    suspend fun detail(id: Int) =
+        client.get("$url?id=$id").body<List<Estudiants>>()
 }

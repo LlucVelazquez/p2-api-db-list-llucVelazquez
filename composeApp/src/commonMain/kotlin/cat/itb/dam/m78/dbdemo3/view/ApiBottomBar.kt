@@ -40,14 +40,14 @@ fun bottomNavBar(navViewModel: NavigationViewModel) {
             selected = selectedNavigationIndex.intValue == 1,
             onClick = {
                 selectedNavigationIndex.intValue = 1
-                navViewModel.navTo(Screen.FavouritesScreen)
+                navViewModel.navTo(Screen.FaltesScreen)
             },
             icon = {
-                Icon(imageVector = Icons.Default.Favorite, contentDescription = "cosa")
+                Icon(imageVector = Icons.Default.Person, contentDescription = "cosa")
             },
             label = {
                 Text(
-                    text = "Favourites",
+                    text = "Faltes",
                     color = if (1 == selectedNavigationIndex.intValue)
                         Color.Black
                     else Color.Gray
