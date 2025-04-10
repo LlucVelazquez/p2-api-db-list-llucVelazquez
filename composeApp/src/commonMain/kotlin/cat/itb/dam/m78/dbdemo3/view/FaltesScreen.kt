@@ -32,7 +32,7 @@ fun FaltesScreen(){
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Spacer(modifier = Modifier.height(30.dp))
-        Text(text = "Favourite Screen", fontSize = 30.sp, textAlign = TextAlign.Center)
+        Text(text = "Faltes", fontSize = 30.sp, textAlign = TextAlign.Center)
         Spacer(modifier = Modifier.height(30.dp))
         LazyColumn {
             items(estudiant) { estudiant->
